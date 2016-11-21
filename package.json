@@ -1,0 +1,21 @@
+{
+  "name": "listening-party",
+  "version": "1.0.0",
+  "description": "Use to track what you've listened to and what you want to listen to",
+  "main": "server.js",
+  "repository": "https://github.com/gwpmad/listening-party.git",
+  "author": "gwpmad",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "dotenv": "^2.0.0",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "gulp": "^3.9.1",
+    "mongodb": "^2.2.11",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "react": "^15.4.0",
+    "react-dom": "^15.4.0"
+  }
+}
