@@ -1,3 +1,3 @@
 module.exports = (app, passport) => {
-    app.get('/', (req, res) => res.render('login'));
+    app.get('/', (req, res) => {console.log(req); res.render('login');})
 };
