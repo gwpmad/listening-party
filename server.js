@@ -1,15 +1,21 @@
 require('dotenv').config();
+const env = process.ENV || 'default';
+const config = require(`./config/${env}`);
+
+const path = require('path');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const viewsDir = 'src/server/views';
-const path = require('path');
+
 const passport = require('passport');
 const passportConfig = require('./src/server/config/passport');
-const routes = require('./src/server/routes/routes');
 const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
+
 const MongoClient = require('mongodb').MongoClient;
+const MongoStore = require('connect-mongo')(session);
 const dbUrl = process.env.MONGO_URI;
+
+const routes = require('./src/server/routes/routes');
 
 const app = express();
 app.set('view engine', 'handlebars');
@@ -29,5 +35,5 @@ MongoClient.connect(dbUrl, (err, db) => {
     console.log('Connected successfully to Mongo');
     passportConfig(passport, db);
     routes(app, passport);
-    app.listen(8080, () => console.log('App ready'));
+    app.listen(config.port, () => console.log(`App ready, running at port ${config.port}`));
 });
