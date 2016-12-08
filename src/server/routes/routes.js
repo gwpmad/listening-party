@@ -16,10 +16,12 @@ module.exports = (app, passport) => {
 
     app.get('/login', ifAuthenticatedDoNotProgress,(req, res) => res.render('login'));
 
-    app.post('/login', urlencodedParser, passport.authenticate('login', {
+    app.post('/login', urlencodedParser,
+        passport.authenticate('login', {
         successRedirect: '/',
         failureRedirect: '/login'
-    }));
+        })
+    );
 
     app.get('/signup', ifAuthenticatedDoNotProgress, (req, res) => res.render('signup'));
 
@@ -28,5 +30,6 @@ module.exports = (app, passport) => {
         passport.authenticate('signup', {
             successRedirect: '/',
             failureRedirect: '/signup'
-        }),
+        })
+    )
 };

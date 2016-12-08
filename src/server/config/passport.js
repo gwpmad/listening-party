@@ -31,31 +31,27 @@ module.exports = (passport, db) => {
         console.log('in the middleware')
         function findOrCreateUser() {
             User.findOne({ 'username': username }, (err, user) => {
- console.log("mongo err ", err);
                 if (err) {
-                    console.log('Error in signup' + err);
                     return done(err);
                 }
-                    console.log('outside all ifs');
 
                 if (user) {
-                    console.log('in user bit' + user);
-                    
-                    console.log('User already exists');
                     return done(null, false, { message: 'User already exists' });
                 } else {
-                    console.log('in the else')
                     const newUser = User.insertOne({ // v useful guide to return values: http://stackoverflow.com/questions/36792649/whats-the-difference-between-insert-insertone-and-insertmany-method
                         username,
                         password: createHash(password),
                         email: req.body.email, // from http://stackoverflow.com/questions/15568851/node-js-how-to-send-data-from-html-to-express
-                    }, (err, result) => {
+                    }, (err) => {
                         if (err) {
-                            console.log('Error saving user:', err);
                             throw err;
                         }
-                        console.log('User registration successful');
-                        return done(null, User.findOne({_id: newUser.insertedId }));
+                        User.findOne({ username }, (err, result) => {
+                            if(err) {
+                                throw err;
+                            }
+                            return done(null, result);
+                        })
                     });
                 }
             })
