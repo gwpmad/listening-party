@@ -26,8 +26,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 MongoClient.connect(dbUrl, (err, db) => {
-  console.log('Connected successfully to Mongo');
-  passportConfig(passport, db);
-  routes(app, passport);
-  app.listen(8080, () => console.log('App ready'));
+    console.log('Connected successfully to Mongo');
+    passportConfig(passport, db);
+    routes(app, passport);
+    app.listen(8080, () => console.log('App ready'));
 });
