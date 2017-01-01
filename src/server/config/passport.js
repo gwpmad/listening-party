@@ -1,21 +1,11 @@
 const Strategy = require('passport-local').Strategy;
 const bCrypt = require('bCrypt');
+const ObjectId = require('../mongo').ObjectId;
 
 module.exports = (passport, db) => {
     const User = db.collection('users');
     const isValidPassword = (user, password) => bCrypt.compareSync(password, user.password);
     const createHash = (password) => bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
-
-    passport.serializeUser(function(user, done) {
-        done(null, user._id);
-    });
- 
-    passport.deserializeUser(function(id, done) {
-        User.findOne({_id: id }, function(err, user) {
-            if (err) throw err;
-            done(err, user);
-        });
-    });
 
     passport.use('login', new Strategy((username, password, done) => {
         User.findOne({ 'username': username }, (err, user) => {
@@ -28,7 +18,6 @@ module.exports = (passport, db) => {
     }));
 
     passport.use('signup', new Strategy({ passReqToCallback: true }, (req, username, password, done) => {
-        console.log('in the middleware')
         function findOrCreateUser() {
             User.findOne({ 'username': username }, (err, user) => {
                 if (err) {
@@ -59,4 +48,15 @@ module.exports = (passport, db) => {
 
         process.nextTick(findOrCreateUser);
     }));
+
+    passport.serializeUser(function(user, done) {
+        done(null, user._id);
+    });
+ 
+    passport.deserializeUser(function(id, done) {
+        User.findOne({_id: ObjectId(id) }, function(err, user) {
+            if (err) throw err;
+            done(err, user);
+        });
+    });
 }

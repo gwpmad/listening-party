@@ -2,12 +2,12 @@ const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 const ifAuthenticatedThenProgress = (req, res, next) => {
-    if (req.isAuthenticated()) return next();
+    if (req.user) return next();
     res.redirect('/login');
 };
 
 const ifAuthenticatedDoNotProgress = (req, res, next) => {
-    if (!req.isAuthenticated()) return next();
+    if (!req.user) return next();
     res.redirect('/');
 };
 
@@ -17,9 +17,10 @@ module.exports = (app, passport) => {
     app.get('/login', ifAuthenticatedDoNotProgress,(req, res) => res.render('login'));
 
     app.post('/login', urlencodedParser,
-        passport.authenticate('login', {
-        successRedirect: '/',
-        failureRedirect: '/login'
+        passport.authenticate('login',{
+            successRedirect: '/',
+            failureRedirect: '/login',
+            failureFlash: true
         })
     );
 
@@ -29,7 +30,8 @@ module.exports = (app, passport) => {
         urlencodedParser,
         passport.authenticate('signup', {
             successRedirect: '/',
-            failureRedirect: '/signup'
+            failureRedirect: '/signup',
+            failureFlash: true
         })
     )
 };

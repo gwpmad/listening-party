@@ -9,21 +9,23 @@ const viewsDir = 'src/server/views';
 
 const passport = require('passport');
 const passportConfig = require('./src/server/config/passport');
+const connectFlash = require('connect-flash');
+const routes = require('./src/server/routes/routes');
 const session = require('express-session');
-
-const MongoClient = require('mongodb').MongoClient;
 const MongoStore = require('connect-mongo')(session);
+const MongoDb = require('./src/server/mongo');
+const MongoClient = MongoDb.MongoClient;
 const dbUrl = process.env.MONGO_URI;
 
-const routes = require('./src/server/routes/routes');
 
 const app = express();
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, viewsDir));
 app.engine('handlebars', exphbs({ defaultLayout: 'main', layoutsDir: viewsDir + '/layouts' }));
 
+app.use(connectFlash());
 app.use(session({
-    store: new MongoStore( { url: dbUrl }),
+    store: new MongoStore({ url: dbUrl }),
     resave: false,
     saveUninitialized: false,
     secret: process.env.SESSION_SECRET,
