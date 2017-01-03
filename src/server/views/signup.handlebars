@@ -1,9 +1,24 @@
 <div class="signup form">
     <form class="signup-form" action="/signup" method="POST">
-        <input type="text" name="username" class="form-control" placeholder="Username">
-        <input type="text" name="email" class="form-control" placeholder="Email">
-        <input type="text" name="password" class="form-control" placeholder="Password">
-        <input type="submit" value="Submit">
+        <ul>
+            <li>
+                <label>Username</label>
+                <input type="text" name="username" class="form-control" placeholder="Username">
+            </li>
+            <li>
+                <label>Email</label>                
+                <input type="text" name="email" class="form-control" placeholder="Email">
+            </li>
+            <li>
+                <label>Password</label>                
+                <input type="text" name="password" class="form-control" placeholder="Password">
+            </li>
+            <li>
+                <input type="submit" value="Submit">
+            </li>
+            <li>
+                Already registered? <a href="/login">Log in</a>
+            </li>
+        </ul>
     </form>
-    Already registered? <a href="/login">Log in</a>
 </div>

@@ -1,5 +1,6 @@
 $form-input-border: #BEBEBE;
 $form-input-submit-bgc: #4B99AD;
+$form-input-submit-hover-bgc: #4691A4;
 
 .form {
     font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -29,5 +30,9 @@ $form-input-submit-bgc: #4B99AD;
         padding: 8px 15px 8px 15px;
         border: none;
         color: #fff;
+        font-weight: bold;        
+    }
+    input[type=submit]:hover {
+        background: $form-input-submit-hover-bgc;
     }
 }
