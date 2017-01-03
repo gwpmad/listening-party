@@ -34,9 +34,13 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-MongoClient.connect(dbUrl, (err, db) => {
-    console.log('Connected successfully to Mongo');
-    passportConfig(passport, db);
-    routes(app, passport);
-    app.listen(config.port, () => console.log(`App ready, running at port ${config.port}`));
-});
+MongoClient.connect(dbUrl)
+    .then(db => {
+        console.log('Connected successfully to Mongo');
+        passportConfig(passport, db);
+        routes(app, passport);
+        app.listen(config.port, () => console.log(`App ready, running at port ${config.port}`));
+    })
+    .catch(err => {
+        console.log('Error connecting to Mongo:', err);
+    });
