@@ -1,5 +1,6 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
+const autoPrefixer = require('gulp-autoprefixer');
 
 const sassSrc = 'src/client/scss/**/*.scss';
 const sassDest = 'src/client/css/';
@@ -7,6 +8,7 @@ const sassDest = 'src/client/css/';
 gulp.task('compile-sass', () =>
     gulp.src(sassSrc)
         .pipe(sass({includePaths: ['./']}).on('error', sass.logError))
+        .pipe(autoPrefixer({browsers: ['last 2 versions']}))
         .pipe(gulp.dest(sassDest))
 );
 
