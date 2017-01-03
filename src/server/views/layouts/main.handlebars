@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="css/main.css">
     <meta charset="utf-8">
     <title>Listening Party</title>
 </head>
 <body>
+    <div class="logout">
+        {{#if user}}
+            <a href="/logout">Log out</a>
+        {{/if}}
+    </div>
     {{{body}}}
 </body>
 </html>

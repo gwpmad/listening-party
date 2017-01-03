@@ -22,6 +22,7 @@ const app = express();
 app.set('view engine', 'handlebars');
 app.set('views', path.join(__dirname, viewsDir));
 app.engine('handlebars', exphbs({ defaultLayout: 'main', layoutsDir: viewsDir + '/layouts' }));
+app.use(express.static('src/client'));
 
 app.use(connectFlash());
 app.use(session({

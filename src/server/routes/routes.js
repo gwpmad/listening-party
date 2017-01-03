@@ -2,12 +2,12 @@ const bodyParser = require('body-parser');
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 const ifAuthenticatedThenProgress = (req, res, next) => {
-    if (req.user) return next();
+    if (req.isAuthenticated()) return next();
     res.redirect('/login');
 };
 
 const ifAuthenticatedDoNotProgress = (req, res, next) => {
-    if (!req.user) return next();
+    if (!req.isAuthenticated()) return next();
     res.redirect('/');
 };
 
@@ -33,5 +33,10 @@ module.exports = (app, passport) => {
             failureRedirect: '/signup',
             failureFlash: true
         })
-    )
+    );
+
+    app.get('/logout', ifAuthenticatedThenProgress, (req, res) => {
+        req.logout();
+        res.redirect('/login');
+    })
 };

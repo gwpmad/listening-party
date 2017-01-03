@@ -1,0 +1,33 @@
+$form-input-border: #BEBEBE;
+$form-input-submit-bgc: #4B99AD;
+
+.form {
+    font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+
+    li {
+        padding: 0;
+        display: block;
+        list-style: none;
+        margin: 10px 0 0 0;
+    }
+
+    label {
+        margin:0 0 3px 0;
+        padding:0px;
+        display:block;
+        font-weight: bold;
+    }
+
+    input[type=text] {
+        border: 1px solid $form-input-border;
+        padding: 7px;
+        margin: 0px;
+    }
+
+    input[type=submit] {
+        background: $form-input-submit-bgc;
+        padding: 8px 15px 8px 15px;
+        border: none;
+        color: #fff;
+    }
+}

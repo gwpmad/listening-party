@@ -54,7 +54,7 @@ module.exports = (passport, db) => {
     });
  
     passport.deserializeUser(function(id, done) {
-        User.findOne({_id: ObjectId(id) }, function(err, user) {
+        User.findOne({_id: ObjectId(id)}, function(err, user) {
             if (err) throw err;
             done(err, user);
         });
