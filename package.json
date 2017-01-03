@@ -4,7 +4,9 @@
   "description": "Use to track what you've listened to and what you want to listen to",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon --watch src ./server.js"
+    "dev": "nodemon --watch src ./server.js",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix"
   },
   "repository": "https://github.com/gwpmad/listening-party.git",
   "author": "gwpmad",
@@ -26,6 +28,11 @@
     "react-dom": "^15.4.0"
   },
   "devDependencies": {
+    "eslint": "^3.12.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
+    "eslint-plugin-react": "^6.8.0",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-sass": "^3.0.0"
   }

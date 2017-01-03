@@ -7,12 +7,12 @@ const sassDest = 'src/client/css/';
 
 gulp.task('compile-sass', () =>
     gulp.src(sassSrc)
-        .pipe(sass({includePaths: ['./']}).on('error', sass.logError))
-        .pipe(autoPrefixer({browsers: ['last 2 versions']}))
-        .pipe(gulp.dest(sassDest))
+        .pipe(sass({ includePaths: ['./'] }).on('error', sass.logError))
+        .pipe(autoPrefixer({ browsers: ['last 2 versions'] }))
+        .pipe(gulp.dest(sassDest)),
 );
 
-//Run 'gulp' on its own
+// Run 'gulp' on its own
 gulp.task('default', () =>
-    gulp.watch(sassSrc, ['compile-sass'])
+    gulp.watch(sassSrc, ['compile-sass']),
 );
