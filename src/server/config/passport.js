@@ -28,7 +28,7 @@ module.exports = (passport, db) => {
         if (user) {
           return done(null, false, { message: 'User already exists' });
         } else {
-          const newUser = User.insertOne({ // v useful guide to return values: http://stackoverflow.com/questions/36792649/whats-the-difference-between-insert-insertone-and-insertmany-method
+          User.insertOne({ // v useful guide to return values: http://stackoverflow.com/questions/36792649/whats-the-difference-between-insert-insertone-and-insertmany-method
             username,
             password: createHash(password),
             email: req.body.email, // from http://stackoverflow.com/questions/15568851/node-js-how-to-send-data-from-html-to-express
