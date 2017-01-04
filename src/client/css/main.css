@@ -35,9 +35,15 @@
   left: 50%;
   margin: -8% 0 0 -8%; }
 
-.logout {
+.add-album {
   position: absolute;
-  right: 0%; }
+  top: 72%;
+  left: 50%;
+  margin: -8% 0 0 -8%; }
 
 body {
   font: 100% Helvetica, Arial, sans-serif; }
+
+.user-info {
+  position: absolute;
+  right: 2%; }

@@ -6,11 +6,16 @@
     <title>Listening Party</title>
 </head>
 <body>
-    <div class="logout">
-        {{#if user}}
+    {{#if user}}
+        <div class="user-info">
+            Logged in as {{user.username}}
             <a href="/logout">Log out</a>
-        {{/if}}
-    </div>
+        </div>
+    {{/if}}
+
+    {{#if message}}
+        {{message}}
+    {{/if}}
     {{{body}}}
 </body>
 </html>

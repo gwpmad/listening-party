@@ -8,3 +8,8 @@ $font-stack: Helvetica, Arial, sans-serif;
 body {
     font: 100% $font-stack;
 }
+
+.user-info {
+    position: absolute;
+    right: 2%
+}

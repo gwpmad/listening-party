@@ -1,1 +1,22 @@
-<span>Dashboard! User: {{user}}</span>
+<div class="add-album form">
+  Add a new album
+  <form class="add-album" action="/submit-album" method="POST">
+    <ul>
+      <li>
+        <label>Name</label>
+        <input type="text" name="name" class="form-control" placeholder="Name">
+      </li>
+      <li>
+        <label>Artist</label>
+        <input type="text" name="artist" class="form-control" placeholder="Artist">        
+      </li>
+      <li>
+        <label>Year released</label>
+        <input type="text" name="year" class="form-control" placeholder="Year Released">                
+      </li>
+      <li>
+        <input type="submit" value="Submit">
+      </li>
+    </ul>
+  </form>
+</div>
